@@ -1,0 +1,42 @@
+
+{% extends 'members/main.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <h5 align="center"> MEMBERS: </h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block bg-primary" style="color: white;"  href="{% url 'create_member' %}"> Add New Member </a>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Name</th>
+                        <th>Telephone</th>
+                        <th>Sex</th>
+                        <th>Marital Status</th>
+                        <th>Physical Address</th>
+                        <th>More</th>
+                        <th>Remove</th>
+                    </tr>
+
+                    {% for member in member_list %}
+                    <tr>
+                        <td>{{member.member_id}}</td>
+                        <td>{{member.full_name}}</td>
+                        <td>{{member.telephone}}</td>
+                        <td>{{member.sex}}</td>
+                        <td>{{member.marital_status}}</td>
+                        <td>{{member.current_address}}</td>
+
+                        <td><a class="btn btn-sm btn-primary" href="{% url 'member' member.member_id %}">View</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'member' member.member_id %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

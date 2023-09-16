@@ -1,0 +1,59 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Loan</title>
+</head>
+<body>
+    <h1>Create Loan</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="borrower_id">Borrower Id:</label>
+        <input type="text" name="borrower_id" required><br>
+        <label for="borrower_name">Borrower Name:</label>
+        <input type="text" name="borrower_name" required><br>
+        <label for="telephone">Telephone:</label>
+        <input type="number" name="telephone" required><br>
+        <label for="loan_type">Loan Type:</label>
+        <input type="text" name="loan_type" required><br>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" required><br>
+        <label for="interest_rate">Interest Rate:</label>
+        <input type="number" name="interest_rate" required><br>
+        <label for="duration_months">Duration (months):</label>
+        <input type="number" name="duration_months" required><br>
+        <label for="collateral_name">Collateral Name:</label>
+        <input type="text" name="collateral_name" required><br>
+        <label for="guarantor1">guarantor1 Name:</label>
+        <input type="text" name="guarantor1" required><br>
+        <label for="guarantor2">guarantor2 Name:</label>
+        <input type="text" name="guarantor2" required><br>
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required><br>
+        <button type="submit">Create Loan</button>
+    </form>
+</body>
+</html>
+
+
+
+
+{% block content  %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"> 
+    <div class="container">
+    <br>
+    <h3> </h3>
+    <form method="POST"  action="" >
+      {% csrf_token %}
+      <fieldset class="form-group">
+            <legend class="border-bottom mb-4" style="color: darkblue; text-align: center;">Add a new Asset details</legend>
+            {{ form|crispy }}
+        </fieldset><br>
+      <div class="form-group" id="signup-button" align="center">
+            <a class="btn btn-lg btn-success" href="#">Back Home</a>
+            <button class="btn btn-lg btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock content %}

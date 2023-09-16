@@ -1,0 +1,78 @@
+{% extends 'members/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h5 align="center" style="color: darkblue;"> {{relative.member.member_id}} -  {{relative.member.full_name}}</h5>
+            <p><strong>Sex:</strong> {{relative.member.sex}} </p>
+            <p><strong>Marital Status:</strong> {{relative.member.marital_status}}</p>
+            <p><strong>Email:</strong> {{relative.member.email}}</p>
+            <p><strong>Telephone:</strong> {{relative.member.telephone}}</p>
+            <p><strong>Date_of_birth:</strong> {{relative.member.date_of_birth}}</p>
+            <p><strong>Current Address:</strong> {{relative.member.current_address}}</p>
+            <p><strong>Home Address:</strong> {{relative.member.home_address}}</p>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_relative' relative.id %}"> Update Member</a>
+            
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="text-bg-primary">
+            <div class="card card-body">
+                <h5 style="color: darkblue;">Relative Information</h5>
+                <hr>
+                <p><strong>Spouse Name: </strong> {{relative.spouse_name}}</p>
+                <p><strong>Spouse Telephone: </strong>{{relative.spouse_telephone}}</p>
+                <p><strong>Father Name: </strong> {{relative.father_name}}</p>
+                <p><strong>Father Telephone: </strong>{{relative.father_telephone}}</p>
+                <p><strong>Mother Name: </strong> {{relative.mother_name}}</p>
+                <p><strong>Mother Telephone: </strong> {{relative.mother_telephone}}</p>
+                <p><strong>Number of children: </strong> {{relative.number_of_children}}</p>
+                <p><strong>Next of kin Name: </strong>{{relative.next_of_kin_name}}</p>
+                <p><strong>Next of kin Telephone: </strong> {{relative.next_of_kin_telephone}}</p>
+                <p><strong>Next of kin Relationship: </strong> {{relative.next_of_kin_relationship}}</p>
+                <p><strong>Beneficiary Name: </strong> {{relative.beneficiary_name}}</p>
+                <p><strong>Beneficiary Telephone: </strong> {{relative.beneficiary_telephone}}</p>
+                <p><strong>Beneficiary Relationship: </strong> {{relative.beneficiary_relationship}}</p>
+                <hr>
+                <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_relative' relative.id %}"> Update </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-body">
+            <h5 align="center" style="color: darkblue;">Children Information</h5>
+            <hr>
+            <table class="table table-sm" >
+                    <tr>
+                        <th>Parent ID</th>
+                        <th>Parent Namechild</th>
+                        <th>Child Name</th>
+                        <th>Sex</th>
+                        <th>Update</th>     
+                    </tr>
+
+                    {% for child in children %}
+                    <tr>
+                        <td>{{child.member_id}}</td>
+                        <td>{{child.member.full_name}}</td>
+                        <td>{{child.full_name}}</td>   
+                        <td>{{child.sex}}</td>
+
+                        <td><a class="btn btn-sm btn-primary" href="{% url 'update_child' child.id %}">Update</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'add_child_detail' %}">Add Children </a>
+           
+        </div>
+    </div>
+    
+</div>
+<br>
+
+
+{% endblock content %}

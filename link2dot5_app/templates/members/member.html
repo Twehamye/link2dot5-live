@@ -1,0 +1,141 @@
+{% extends 'members/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5 align="center">Member: {{member.member_id}} - {{member.full_name}}</h5>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_member' member.member_id %}"> Update Member</a>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'deposit_create' %}"> Make a New Deposit</a>
+            <!--<a class="btn btn-outline-danger btn-sm btn-block" href="#"> Place Order </a>-->
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="text-bg-primary">
+            <div class="card card-body">
+                <h5>Contact Information</h5>
+                <hr>
+                <p>Email: {{member.email}}</p>
+                <p>Phone: {{member.telephone}}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md">
+        <div class="text-bg-primary">
+            <div class="card card-body">
+                <h5 align="center"> Individual Records</h5>
+                <hr>
+                <p style="text-align: center; padding: 1px">Total Savings: <strong>{{ind_savings}}/= </strong></p>
+                <p style="text-align: center; padding: 5px">Unpaid Fine: <strong>{{ind_fine}}/=</strong> </p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4 align="center">Transaction Details</h4>
+        <div class="card card-body">
+            <a class="btn btn-primary btn-block" href="{% url 'deposit_create' %}"> New deposit</a>
+            <table class="table table-sm table-hover">
+                <tr>
+                    <th>Member</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Date of deposit</th>
+                    <th>Status</th>
+                    <th>Remove</th>
+                </tr>
+
+                {% for deposit in deposits %}
+                    <tr>
+                        <td>{{deposit.member}}</td>
+                        <td>{{deposit.amount}}</td>
+                        <td>{{deposit.purpose}}</td>
+                        <td>{{deposit.date_created}}</td>
+                        <td>{{deposit.status}}</td>
+                        
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_deposit' deposit.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+        <div class="col-md">
+            <h4 align="center">Relatives' Details</h4>
+            <div class="card card-body">
+               
+                <table class="table table-sm table-hover" >
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Spouse Name</th>
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>View</th>
+                        <th>Update</th>
+                        
+                    </tr>
+
+                    {% for relative in relative %}
+                        <tr>
+                            <td>{{relative.member.member_id}}</td>
+                            <td>{{relative.spouse_name}}</td>
+                            <td>{{relative.father_name}}</td>
+                            <td>{{relative.mother_name}}</td>
+                            
+                            <td><a class="btn btn-sm btn-primary" href="{% url 'relative' relative.id %}">More</a></td>
+                            <td><a class="btn btn-sm btn-primary" href="{% url 'update_relative' relative.id %}">Update</a></td>
+                            
+                        </tr>
+                    {% endfor %}
+
+                </table>
+                <a class="btn btn-secondary btn-sm" href="{% url 'add_relative_detail' %}"> Add relatives (done ONLY once otherwise update)</a>
+            </div><br>
+            <div class="col-md">
+            <h4 align="center">Children Details</h4>
+            <div class="card card-body">
+                <a class="btn btn-primary btn-block" href="{% url 'add_child_detail' %}"> Add a Child</a>
+                <table class="table table-sm table-hover" border="1" >
+                    <tr>
+                        <th>Parent ID</th>
+                        <th>Child Name</th>
+                        <th>Sex</th>
+                        <th>Date of Birth</th>
+                        
+                        <th>Update</th>
+                    </tr>
+
+                    {% for child in children %}
+                        <tr>
+                            <td>{{child.member.member_id}}</td>
+                            <td>{{child.full_name}}</td>
+                            <td>{{child.sex}}</td>
+                            <td>{{child.date_of_birth}}</td>
+                            
+                            
+                            <td><a class="btn btn-sm btn-primary" href="{% url 'update_child' child.id %}">Update</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+    </div>
+    </div>
+</div>
+{% endblock content %}

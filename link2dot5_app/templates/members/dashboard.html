@@ -1,0 +1,51 @@
+{% extends 'members/main.html' %}
+
+{% block content %}
+{% include 'members/status.html' %}
+
+<!--<div class="row">
+    <div class="col">
+        <h3>Search through Transactions:</h3>
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>-->
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <h5 align="center"> MEMBERS: </h5>
+            <hr>
+            <div class="card card-body">
+               
+                <table class="table table-sm">
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Name</th>
+                        <th>Telephone</th>
+                        <th>Status</th>
+                        <th>Home Address</th>
+                        
+                    </tr>
+
+                    {% for member in mymembers %}
+                    <tr>
+                        <td>{{member.member_id}}</td>
+                        <td>{{member.full_name}}</td>
+                        <td>{{member.telephone}}</td>
+                        <td>{{member.marital_status}}</td>
+                        <td>{{member.home_address}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

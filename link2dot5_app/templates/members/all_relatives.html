@@ -1,0 +1,57 @@
+
+{% extends 'members/main.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <h5 align="center"> Relatives' Data</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block bg-primary" style="color: white;"  href="{% url 'add_relative_detail' %}"> Add New Information </a>
+                <table class="table table-sm table-hover" border="1">
+                    <tr>
+                        <th>Member ID</th>
+                        <th>Member Name</th>
+                        <th>Spouse' Name</th>
+                        
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>No. of children</th>
+                        <th>Next_kin Name</th>
+                        
+                        <th>Next_kin Relationship</th>
+                        <th>Beneficiary Name</th>
+                        <th>B_relationship</th>
+                        
+                        <th>Action</th>
+                        <th>More</th>
+                        <th>Remove</th>
+                    </tr>
+
+                    {% for relative in relative_list %}
+                    <tr>
+                        <td>{{relative.member_id}}</td>
+                        <td>{{relative.member.full_name}}</td>
+                        <td>{{relative.spouse_name}}</td>
+                        
+                        <td>{{relative.father_name}}</td>
+                        <td>{{relative.mother_name}}</td>
+                        <td>{{relative.number_of_children}}</td>
+                        <td>{{relative.next_of_kin_name}}</td>
+                        
+                        <td>{{relative.next_of_kin_relationship}}</td>
+                        <td>{{relative.beneficiary_name}}</td>
+                        <td>{{relative.beneficiary_relationship}}</td>
+                        
+                        <td><a class="btn btn-sm btn-primary" href="{% url 'update_relative' relative.id %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-primary" href="{% url 'relative' relative.id %}">more</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_relative' relative.id %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

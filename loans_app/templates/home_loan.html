@@ -1,0 +1,87 @@
+{% load static %}
+ {% include 'loan_navbar.html' %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"><br>
+ <br><br>  
+<div class="row">
+    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title"> Loans Not Reviewed:</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{loans_unreviewed_number}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title"> Loans Rejected:</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{loans_rejected_number}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-orders">
+                <div class="card-header">
+                    <h5 class="card-title">Loans Approved:</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{loans_approved_number}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Loans Disbursed: </h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{loans_approved}}/=</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-delivered">
+                <div class="card-header">
+                    <h5 class="card-title">Loans Payments:</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{loans_pending}}/=</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <h5 class="card-title">Interest Earned:</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{interest_amount}}/=</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><br>
+

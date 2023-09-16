@@ -1,0 +1,22 @@
+{% extends 'members/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content  %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <div class="container" >
+    <br>
+    <h3></h3>
+    <form method="POST"  action="" >
+      {% csrf_token %}
+      <fieldset class="form-group">
+            <legend class="border-bottom mb-4" style="color: darkblue; text-align: center;">Create a new Expense </legend>
+            {{ form|crispy }}
+        </fieldset><br>
+        <div class="form-group" id="signup-button" align="center">
+            <a class="btn btn-lg btn-success" href="{% url 'home' %}">Back Home</a>
+            <button class="btn btn-lg btn-primary">Submit</button>
+        </div>
+    </form>
+{% endblock content %}

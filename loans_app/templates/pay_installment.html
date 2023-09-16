@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pay Installment</title>
+</head>
+<body>
+    <h1>Pay Installment</h1>
+    <p>Installment Due Date: {{ installment.due_date }}</p>
+    <p>Amount Due: {{ installment.amount_due }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Pay Installment</button>
+    </form>
+</body>
+</html>

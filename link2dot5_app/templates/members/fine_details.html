@@ -1,0 +1,23 @@
+{% extends 'members/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content  %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<div class="container" ><br>
+    <h1>Fine Details</h1>
+    <p>Fine Amount: <strong>${{ fine_application.amount }}</strong></p>
+    <p>Member ID: <strong>{{ fine_application.member_id}}</strong></p>
+    <p>Member Name:<strong> {{ fine_application.member.full_name}}</strong></p>
+    <p>Reason:<strong> {{ fine_application.reason }}</strong></p>
+
+    {% if fine_application.status == 'unpaid' %}
+       <a class="btn btn-success" href="{% url 'make_payment' fine_id=fine_application.id %}">Make Payment</a>
+
+    {% else %}
+    <p><strong> loan payment completed,</strong> Thank you for paying your loan</p>
+    <a href="{% url 'fine_create'  %}">New application</a>
+    {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,71 @@
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h5 align="center"> LOANS </h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-sm btn-block bg-primary" style="color: white;"  href="#"> Enter a New Fine details </a>
+            <table class="table table-sm" border="1" align="center">
+                <tr>
+                    <th>ID</th>
+                    <th>Member</th>
+                    
+                    <th>Loan Taken</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for x in approved_loans %}
+                <tr>
+                    <td> {{x.id}}</td>
+                    <td> {{x.loan_application.borrower_name}}</td>
+                    <td> {{x.loan_application.amount}}</td>
+                    <td> {{x.amount}}</td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-sm btn-info" href="#">Update</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{% url 'make_payment' loan_id=x.id %}">pay fine</a> 
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h5 align="center"> CLEARED FINE LIST </h5>
+        <hr>
+        <div class="card card-body">
+            <a class="btn btn-sm btn-block bg-primary" style="color: white;"  href="{% url 'create_member' %}">View all fines </a>
+            <table class="table table-sm">
+                <tr>
+                    <th> ID</th>
+                    <th>Member ID</th>
+                    <th>Reason</th>
+                    <th>Fined on</th>
+                    <th>Paid on</th>
+                    <th>Amount</th>
+                    <th>More</th>
+                </tr>
+
+                {%  for c in fines_cleared  %}
+                <tr>
+                    <td>{{c.fine.id}}</td>
+                    <td>{{c.fine.member_id}}</td>
+                    <td>{{c.fine.reason}}</td>
+                    <td>{{c.fine.issue_date}}</td>
+                    <td>{{c.payment_date}}</td>
+                    <td>{{c.amount}}</td>
+
+                    <td><a class="btn btn-sm btn-primary" href="#">View</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</div>

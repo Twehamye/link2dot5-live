@@ -1,0 +1,21 @@
+{% extends 'members/main.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <div class="card card-body">
+            <p>Are you sure you want to delete deposit for <strong>{{item.member}}</strong> of "{{item.amount}} {{item.purpose}} "</p>
+
+            <form method="POST" action="{% url 'delete_deposit' item.id %}">
+                {% csrf_token %}
+                <a class="btn btn-sm btn-warning" href="{% url 'all_deposit' %}">Cancel</a>
+                <input class="btn btn-sm btn-danger" type="submit" name="confirm">
+            </form>
+
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}

@@ -1,0 +1,41 @@
+
+{% extends 'members/main.html' %}
+
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <h5 align="center"> ASSETS: </h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-sm btn-block bg-primary" style="color: white;"  href="{% url 'create_asset' %}"> Add New Asset Details </a>
+                <table class="table table-bordered border-primary table-hover">
+                    <tr>
+                        <th> ID</th>
+                        <th>Asset Name</th>
+                        <th>Description</th>
+                        <th>Date of purchase</th>
+                        <th>Amount</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    {% for asset in asset_list %}
+                    <tr>
+                        <td>{{asset.id}}</td>
+                        <td>{{asset.asset_name}}</td>
+                        <td>{{asset.asset_desc}}</td>
+                        <td>{{asset.date_of_purchase}}</td>
+                        <td>{{asset.purchase_amount}}</td>
+                        
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_asset' asset.id  %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_asset' asset.id  %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

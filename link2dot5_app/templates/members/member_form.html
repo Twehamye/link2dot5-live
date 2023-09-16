@@ -1,0 +1,22 @@
+{% extends 'members/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+        <div class="container"><br>
+            <form action="" method="POST" >
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4" style="color: darkblue; text-align: center;">Add New Member Details</legend>
+                    {{ form|crispy }}
+                </fieldset><br>
+                <div class="form-group" id="signup-button" align="center">
+                        <a class="btn btn-lg btn-success" href="{% url 'home' %}">Back Home</a>
+                        <button class="btn btn-lg btn-primary">Submit</button>
+                    </div>
+            </form>
+        </div>
+
+
+{% endblock %}

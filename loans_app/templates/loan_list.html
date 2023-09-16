@@ -1,0 +1,55 @@
+{% load static %}
+ {% include 'loan_navbar.html' %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"><br>
+ <br><br>  
+
+<div class="container">
+    <h1 align="center">Loan applications list </h1>
+    
+    <table class="table table-sm" border="1" align="center">
+                <tr>
+                    <th>ID</th>
+                    <th>Start Date</th>
+                    <th>Period</th>
+                    <th>Amount</th>
+                    <th>Interest</th>
+                    <th>Total Loan</th>
+                    <th>Maturity Date</th>
+                    <th>Is reviewed </th>
+                    <th> Status</th> 
+                   
+                    <th>Report </th> 
+                   
+                </tr>
+
+                {% for x in loans %}
+                <tr>
+                    <td> {{x.id}}</td>
+                    <td> {{x.start_date}}</td>
+                    <td> {{x.duration_months}}</td>
+                    <td> {{x.amount}}</td>
+                    <td> {{x.interest_rate}}%</td> 
+                    <td> {{x.total}}</td>
+                    <td> {{x.day }} </td>
+                    <td> {{x.is_reviewed }} </td>
+                    <td> {{x.status }} </td> 
+                     
+                    
+
+                  
+                    
+                   
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{% url 'loan_report' x.id %}">Report </a> 
+                    </td>
+                   
+                   </tr>
+                   
+                {% endfor %}
+
+            </table>
+         <a class="btn btn-primary align=" href="{% url 'create_loan'  %}"  >Add loan </a>   
+</div>

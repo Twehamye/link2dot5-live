@@ -1,0 +1,18 @@
+{% extends 'members/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content  %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<div class="container" ><br>
+    <h1>Make Fine Payment</h1>
+    <p>Fine Amount Balance:<strong> ${{ fine.amount }} </strong></p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-lg btn-success"  type="submit">Click To Pay</button>
+    </form>
+
+</div>
+{% endblock content %}

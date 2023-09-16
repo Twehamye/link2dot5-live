@@ -1,0 +1,57 @@
+{% load static %}
+ {% include 'loan_navbar.html' %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"><br>
+ <br><br>  
+
+
+    <title>Installment List</title>
+
+    <h1 align="center">Installment List for running loans</h1>
+    <br>
+        <div class="container">
+            <table class="table table-sm" border="1" align="center">
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Borrower Name</th>
+                    <th>Loan Amount</th>
+                    <th>Loan Period</th>
+                    <th>Installment</th>
+                    <th>Interest</th>
+                    <th>Is Paid</th>
+                    <th>Paid on</th>
+                    <th>Interest rate </th>
+                     
+                    <th> Is reviewed </th> 
+                    <th>Report </th> 
+                   
+                </tr>
+
+                {% for x in installments %}
+                <tr>
+                    <td> {{x.loan.id}}</td>
+                    <td> {{x.loan.borrower_name}}</td>
+                    <td> {{x.loan.amount}}</td>
+                    <td> {{x.loan.duration_months}}</td>
+                    <td> {{x.amount_due}}</td>
+                    <td> {{x.interest}}</td>
+                    <td> {{x.is_paid }} </td>
+                    <td> {{x.payment_date}}</td>
+                    <td> {{x.loan.interest_rate}}%</td> 
+                    
+                  
+                    <td> {{x.loan.is_reviewed }} </td>
+                    
+
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{% url 'loan_report' x.loan.id %}">Report </a> 
+                    </td>
+                   
+                   </tr>
+                   
+                {% endfor %}
+
+            </table>
+        </div>

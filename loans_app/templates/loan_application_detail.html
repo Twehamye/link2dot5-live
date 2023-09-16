@@ -1,0 +1,12 @@
+<h1>Loan Application Details</h1>
+<p>Amount: ${{ loan_application.amount }}</p>
+<p>Borrower Name: {{ loan_application.borrower_name }}</p>
+<p>Email: {{ loan_application.email }}</p>
+
+{% if loan_application.status == 'pending' %}
+    <a href="{% url 'make_payment' loan_id=loan_application.id %}">Make Payment</a>
+
+{% else %}
+<p><strong>{{ loan_application.borrower_name }}'s loan payment completed,</strong> Thank you for paying your loan</p>
+<a href="{% url 'apply_loan'  %}">New application</a>
+{% endif %}
